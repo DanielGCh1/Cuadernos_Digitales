@@ -151,10 +151,5 @@ namespace CuadernosDigitales.Forms
             }
         }
 
-        private void cabezaPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
     }
 }

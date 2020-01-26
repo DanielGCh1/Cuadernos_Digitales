@@ -74,7 +74,6 @@
             this.cabezaPanel.Name = "cabezaPanel";
             this.cabezaPanel.Size = new System.Drawing.Size(446, 161);
             this.cabezaPanel.TabIndex = 1;
-            this.cabezaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.cabezaPanel_Paint);
             this.cabezaPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CabezaPanel_MouseDown);
             // 
             // pictureBox1
@@ -142,11 +141,11 @@
             // 
             this.LabelUsuario.AutoSize = true;
             this.LabelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelUsuario.Location = new System.Drawing.Point(180, 195);
+            this.LabelUsuario.Location = new System.Drawing.Point(140, 193);
             this.LabelUsuario.Name = "LabelUsuario";
-            this.LabelUsuario.Size = new System.Drawing.Size(69, 17);
+            this.LabelUsuario.Size = new System.Drawing.Size(153, 17);
             this.LabelUsuario.TabIndex = 5;
-            this.LabelUsuario.Text = "Usuario:";
+            this.LabelUsuario.Text = "Nombre de Usuario:";
             // 
             // LinkLabelRegistrarce
             // 

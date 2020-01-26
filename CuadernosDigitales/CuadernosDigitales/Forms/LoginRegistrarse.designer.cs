@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.closeAppButton = new System.Windows.Forms.Button();
             this.cabezaPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LabelTitulo = new System.Windows.Forms.Label();
             this.ButtonRegistrar = new System.Windows.Forms.Button();
             this.TextBoxContraseña = new System.Windows.Forms.TextBox();
@@ -43,12 +44,13 @@
             this.errorProviderLogin = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderContraseña = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderRepetirContraseña = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.TextBoxNombreRealUsuario = new System.Windows.Forms.TextBox();
+            this.LabelNombreRealUsuario = new System.Windows.Forms.Label();
             this.cabezaPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderContraseña)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderRepetirContraseña)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // closeAppButton
@@ -80,6 +82,16 @@
             this.cabezaPanel.TabIndex = 1;
             this.cabezaPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CabezaPanel_MouseDown);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Image = global::CuadernosDigitales.Properties.Resources.azul;
+            this.pictureBox1.Location = new System.Drawing.Point(199, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
             // LabelTitulo
             // 
             this.LabelTitulo.AutoSize = true;
@@ -108,7 +120,7 @@
             // 
             this.TextBoxContraseña.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TextBoxContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxContraseña.Location = new System.Drawing.Point(230, 223);
+            this.TextBoxContraseña.Location = new System.Drawing.Point(229, 249);
             this.TextBoxContraseña.Name = "TextBoxContraseña";
             this.TextBoxContraseña.PasswordChar = '*';
             this.TextBoxContraseña.Size = new System.Drawing.Size(141, 23);
@@ -119,7 +131,7 @@
             // 
             this.TextBoxUsuario.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TextBoxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxUsuario.Location = new System.Drawing.Point(230, 175);
+            this.TextBoxUsuario.Location = new System.Drawing.Point(230, 209);
             this.TextBoxUsuario.Name = "TextBoxUsuario";
             this.TextBoxUsuario.Size = new System.Drawing.Size(141, 23);
             this.TextBoxUsuario.TabIndex = 7;
@@ -130,7 +142,7 @@
             this.LabelContraseña.AutoSize = true;
             this.LabelContraseña.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.LabelContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelContraseña.Location = new System.Drawing.Point(90, 223);
+            this.LabelContraseña.Location = new System.Drawing.Point(89, 249);
             this.LabelContraseña.Name = "LabelContraseña";
             this.LabelContraseña.Size = new System.Drawing.Size(96, 17);
             this.LabelContraseña.TabIndex = 6;
@@ -141,11 +153,11 @@
             this.LabelUsuario.AutoSize = true;
             this.LabelUsuario.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.LabelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelUsuario.Location = new System.Drawing.Point(100, 175);
+            this.LabelUsuario.Location = new System.Drawing.Point(52, 209);
             this.LabelUsuario.Name = "LabelUsuario";
-            this.LabelUsuario.Size = new System.Drawing.Size(69, 17);
+            this.LabelUsuario.Size = new System.Drawing.Size(153, 17);
             this.LabelUsuario.TabIndex = 5;
-            this.LabelUsuario.Text = "Usuario:";
+            this.LabelUsuario.Text = "Nombre de Usuario:";
             // 
             // ButtonCancelar
             // 
@@ -165,7 +177,7 @@
             // 
             this.TextBoxRepetirContraseña.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TextBoxRepetirContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxRepetirContraseña.Location = new System.Drawing.Point(230, 267);
+            this.TextBoxRepetirContraseña.Location = new System.Drawing.Point(229, 293);
             this.TextBoxRepetirContraseña.Name = "TextBoxRepetirContraseña";
             this.TextBoxRepetirContraseña.PasswordChar = '*';
             this.TextBoxRepetirContraseña.Size = new System.Drawing.Size(141, 23);
@@ -177,7 +189,7 @@
             this.LabelRepetirContraseña.AutoSize = true;
             this.LabelRepetirContraseña.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.LabelRepetirContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelRepetirContraseña.Location = new System.Drawing.Point(62, 267);
+            this.LabelRepetirContraseña.Location = new System.Drawing.Point(61, 293);
             this.LabelRepetirContraseña.Name = "LabelRepetirContraseña";
             this.LabelRepetirContraseña.Size = new System.Drawing.Size(152, 17);
             this.LabelRepetirContraseña.TabIndex = 11;
@@ -195,15 +207,25 @@
             // 
             this.errorProviderRepetirContraseña.ContainerControl = this;
             // 
-            // pictureBox1
+            // TextBoxNombreRealUsuario
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Image = global::CuadernosDigitales.Properties.Resources.azul;
-            this.pictureBox1.Location = new System.Drawing.Point(199, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            this.TextBoxNombreRealUsuario.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TextBoxNombreRealUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxNombreRealUsuario.Location = new System.Drawing.Point(230, 175);
+            this.TextBoxNombreRealUsuario.Name = "TextBoxNombreRealUsuario";
+            this.TextBoxNombreRealUsuario.Size = new System.Drawing.Size(141, 23);
+            this.TextBoxNombreRealUsuario.TabIndex = 14;
+            // 
+            // LabelNombreRealUsuario
+            // 
+            this.LabelNombreRealUsuario.AutoSize = true;
+            this.LabelNombreRealUsuario.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LabelNombreRealUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNombreRealUsuario.Location = new System.Drawing.Point(52, 175);
+            this.LabelNombreRealUsuario.Name = "LabelNombreRealUsuario";
+            this.LabelNombreRealUsuario.Size = new System.Drawing.Size(168, 17);
+            this.LabelNombreRealUsuario.TabIndex = 13;
+            this.LabelNombreRealUsuario.Text = "Nombre Real Usuario:";
             // 
             // LoginRegistrarse
             // 
@@ -212,6 +234,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.ButtonCancelar;
             this.ClientSize = new System.Drawing.Size(529, 373);
+            this.Controls.Add(this.TextBoxNombreRealUsuario);
+            this.Controls.Add(this.LabelNombreRealUsuario);
             this.Controls.Add(this.TextBoxRepetirContraseña);
             this.Controls.Add(this.LabelRepetirContraseña);
             this.Controls.Add(this.ButtonCancelar);
@@ -227,10 +251,10 @@
             this.Text = "Cuadernos Digitales";
             this.cabezaPanel.ResumeLayout(false);
             this.cabezaPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderContraseña)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderRepetirContraseña)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,6 +277,8 @@
         private System.Windows.Forms.ErrorProvider errorProviderContraseña;
         private System.Windows.Forms.ErrorProvider errorProviderRepetirContraseña;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox TextBoxNombreRealUsuario;
+        private System.Windows.Forms.Label LabelNombreRealUsuario;
     }
 }
 

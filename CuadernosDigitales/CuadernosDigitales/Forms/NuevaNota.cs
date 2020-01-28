@@ -129,6 +129,14 @@ namespace CuadernosDigitales.Forms
                 nota.Privacidad = ocultarCheckBox.Checked;
                 informacionCompleta = true;
 
+                Font font = new Font("sdfsdf",4);
+
+                Console.WriteLine(fontDialog.Font);
+                Console.WriteLine(fontDialog.Font.Name);
+                Console.WriteLine(fontDialog.Font.Size);
+                Console.WriteLine(fontDialog.Font.Unit);
+                Console.WriteLine(fontDialog.Font.GdiCharSet);
+                Console.WriteLine(fontDialog.Font.GdiVerticalFont);
             }
             if (!esNueva)
             {

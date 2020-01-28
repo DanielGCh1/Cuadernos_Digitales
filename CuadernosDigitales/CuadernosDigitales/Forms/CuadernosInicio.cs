@@ -137,7 +137,7 @@ namespace CuadernosDigitales
             ArchivoHistorial archivoManager = new ArchivoHistorial();
             CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Cuadernos", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Cuadernos", "Cuadernos", 0);
             CrearHistorialVisitaFormulario(archivoManager);
-            AbrirForm<Cuadernos>();
+            AbrirForm<CuadernosMenu>();
         }
        
         private void InicioButtonAlternative_Click(object sender, EventArgs e)
@@ -146,7 +146,7 @@ namespace CuadernosDigitales
             etiquetaHistorial.Visible = false;
             PanelEtiquetaEditarUsuario.Visible = false;
             tituloLabel.Text = "INICIO";
-            MostrarFormEnPanel(new Cuadernos());
+            MostrarFormEnPanel(new CuadernosMenu());
         }
 
         private void HistorialButton_Click(object sender, EventArgs e)

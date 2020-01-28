@@ -29,7 +29,9 @@ namespace CuadernosDigitales.Forms
         public NotasMenu()
         {
             InitializeComponent();
-            cuadernoPadre = Cuadernos.CuadernoSeleccionado;
+            CargarNotasDeBaseDeDatos();
+
+            cuadernoPadre = CuadernosMenu.CuadernoSeleccionado;
             nombreCuadernoLabel.Text = cuadernoPadre.Nombre;
             cargarNotas(cuadernoPadre.getListaDeNotas(),false);
             panelSeleccionadaAux = new Panel();
@@ -55,23 +57,23 @@ namespace CuadernosDigitales.Forms
         public  void NuevaNotaGuardada()
         {
             ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de crear nueva nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo una nueva nota", "Notas Menu", Cuadernos.CuadernoSeleccionado.getListaDeNotas().Count());
+            CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de crear nueva nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo una nueva nota", "Notas Menu", CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count());
             CrearHistorialCreacionNota(archivoManager);
 
             notaNueva = NuevaNota.nota;
-            Cuadernos.CuadernoSeleccionado.agregarNota(notaNueva);
+            CuadernosMenu.CuadernoSeleccionado.agregarNota(notaNueva);
             if(!notaNueva.Privacidad) MostrarNotaEnPantalla(notaNueva);
         }
         public void NotaEditada()
         {
-            int numeroNota = Cuadernos.CuadernoSeleccionado.BuscarNota(notaSeleccionada.Titulo);
+            int numeroNota = CuadernosMenu.CuadernoSeleccionado.BuscarNota(notaSeleccionada.Titulo);
             
             if (numeroNota!=-1)
             {
                 foreach(Control item in notasContainer.Controls)
                 {
 
-                    if(item.Name == Cuadernos.CuadernoSeleccionado.ObtenerNombre(numeroNota)&&item is Panel)
+                    if(item.Name == CuadernosMenu.CuadernoSeleccionado.ObtenerNombre(numeroNota)&&item is Panel)
                     {
                         ((Panel)item).BackColor = notaNueva.Color;
                         ((Panel)item).Name = notaNueva.Titulo;
@@ -88,7 +90,7 @@ namespace CuadernosDigitales.Forms
                 ArchivoHistorial archivoManager = new ArchivoHistorial();
                 CargarInformacionActividadUsuario(archivoManager, "Edición de nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito una nota", "Notas Menu", numeroNota);
                 CrearHistorialCreacionNota(archivoManager);
-                Cuadernos.CuadernoSeleccionado.ModificarNota(numeroNota, notaNueva);
+                CuadernosMenu.CuadernoSeleccionado.ModificarNota(numeroNota, notaNueva);
             }
         }
 
@@ -157,10 +159,10 @@ namespace CuadernosDigitales.Forms
             }
             if(e.Button == MouseButtons.Right)
             {
-                int numeroNota = Cuadernos.CuadernoSeleccionado.BuscarNota(notaSeleccionada.Titulo);
+                int numeroNota = CuadernosMenu.CuadernoSeleccionado.BuscarNota(notaSeleccionada.Titulo);
                 foreach (Control item in notasContainer.Controls)
                 {
-                    if (item.Name == Cuadernos.CuadernoSeleccionado.ObtenerNombre(numeroNota) && item is Panel)
+                    if (item.Name == CuadernosMenu.CuadernoSeleccionado.ObtenerNombre(numeroNota) && item is Panel)
                     {
                         if(((Panel)item)!= panelSeleccionadaAux){
                             panelSeleccionadaAux.BorderStyle = BorderStyle.None;
@@ -344,7 +346,6 @@ namespace CuadernosDigitales.Forms
                 categoriaLabel.BackColor = Color.Green;
                 categoriaLabel.Text = "#"+c.Nombre;
                 categoriasPanel.Controls.Add(categoriaLabel);
-                //MessageBox.Show(c.Nombre);
             }
 
             ArchivoHistorial archivoManager = new ArchivoHistorial();
@@ -397,6 +398,26 @@ namespace CuadernosDigitales.Forms
             catch (Exception exception)
             {
                 MessageBox.Show($"Se produjo el siguiente error: {exception}");
+            }
+        }
+        private void CargarNotasDeBaseDeDatos()
+        {
+            if (CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count == 0)
+            {
+                Nota nota = new Nota();
+                nota.Categoria = "Hola";
+                nota.ColorDeLetra = Color.FromName("Black");
+                nota.Color = Color.FromName("Red");
+                Font font = new Font("sdfsdf", 11);
+
+                nota.Fuente = font;
+                nota.Contenido = "Hola que hace";
+                nota.Titulo = "Nota de prueba";
+                nota.FechaDeCreacion = DateTime.Now;
+                // nota.FechaDeModificacion = null;
+                nota.Privacidad = false;
+
+                CuadernosMenu.CuadernoSeleccionado.agregarNota(nota);
             }
         }
 

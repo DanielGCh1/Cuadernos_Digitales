@@ -150,7 +150,10 @@ namespace CuadernosDigitales.Forms
             cuaderno.Nombre = nombreCuadernoTextBox.Text;
             cuaderno.Color = colorSeleccionadoPanel.BackColor;
             cuaderno.Imagen = colorSeleccionado;
-           
+
+            Console.WriteLine(colorSeleccionadoPanel.BackColor.Name);
+            Console.WriteLine();
+
             for (int i = 0; i < 9; i++)
             {
                 if (categoriasTexBox[i].Text.Length != 0)

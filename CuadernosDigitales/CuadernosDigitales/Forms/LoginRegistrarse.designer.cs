@@ -46,11 +46,13 @@
             this.errorProviderRepetirContraseña = new System.Windows.Forms.ErrorProvider(this.components);
             this.TextBoxNombreRealUsuario = new System.Windows.Forms.TextBox();
             this.LabelNombreRealUsuario = new System.Windows.Forms.Label();
+            this.ErrorProviderNombreRealUsuario = new System.Windows.Forms.ErrorProvider(this.components);
             this.cabezaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderContraseña)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderRepetirContraseña)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProviderNombreRealUsuario)).BeginInit();
             this.SuspendLayout();
             // 
             // closeAppButton
@@ -227,6 +229,10 @@
             this.LabelNombreRealUsuario.TabIndex = 13;
             this.LabelNombreRealUsuario.Text = "Nombre Real Usuario:";
             // 
+            // ErrorProviderNombreRealUsuario
+            // 
+            this.ErrorProviderNombreRealUsuario.ContainerControl = this;
+            // 
             // LoginRegistrarse
             // 
             this.AcceptButton = this.ButtonRegistrar;
@@ -255,6 +261,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderContraseña)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderRepetirContraseña)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProviderNombreRealUsuario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +286,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox TextBoxNombreRealUsuario;
         private System.Windows.Forms.Label LabelNombreRealUsuario;
+        private System.Windows.Forms.ErrorProvider ErrorProviderNombreRealUsuario;
     }
 }
 

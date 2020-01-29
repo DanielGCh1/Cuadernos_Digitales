@@ -29,7 +29,7 @@ namespace CuadernosDigitales.Forms
         public NotasMenu()
         {
             InitializeComponent();
-            CargarNotasDeBaseDeDatos();
+        //    CargarNotasDeBaseDeDatos();
 
             cuadernoPadre = CuadernosMenu.CuadernoSeleccionado;
             nombreCuadernoLabel.Text = cuadernoPadre.Nombre;
@@ -47,22 +47,31 @@ namespace CuadernosDigitales.Forms
             this.Controls.Add(nuevaNota);
             this.Tag = nuevaNota;
             nuevaNota.BringToFront();
-            ArchivoHistorial archivoManagerHistorial = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManagerHistorial, "Presionar el boton de Nueva Nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nueva Nota", "Nueva Nota", 0);
-            CrearHistorialVisitaFormulario(archivoManagerHistorial);
+
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de Nueva Nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nueva Nota", "NuevaNota");
+            historial.AgregarHistorialALaBaseDeDatos(historial);
+
+            //ArchivoHistorial archivoManagerHistorial = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManagerHistorial, "Presionar el boton de Nueva Nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nueva Nota", "NuevaNota", 0);
+            //CrearHistorialVisitaFormulario(archivoManagerHistorial);
 
             nuevaNota.Show();
 
         }
         public  void NuevaNotaGuardada()
         {
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de crear nueva nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo una nueva nota", "Notas Menu", CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count());
-            CrearHistorialCreacionNota(archivoManager);
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de crear nueva nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo una nueva nota", "Notas Menu", CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count());
+            //CrearHistorialCreacionNota(archivoManager);
 
             notaNueva = NuevaNota.nota;
+            notaNueva.Orden = CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count;
+            notaNueva.IndiceNota = CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count + 1;
             CuadernosMenu.CuadernoSeleccionado.agregarNota(notaNueva);
             if(!notaNueva.Privacidad) MostrarNotaEnPantalla(notaNueva);
+
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de crear nueva nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo una nueva nota", Convert.ToString(notaNueva.IndiceNota));
+            historial.AgregarHistorialALaBaseDeDatos(historial);
         }
         public void NotaEditada()
         {
@@ -87,9 +96,13 @@ namespace CuadernosDigitales.Forms
                         }
                     }
                 }
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Edición de nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito una nota", "Notas Menu", numeroNota);
-                CrearHistorialCreacionNota(archivoManager);
+                Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Edición de nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito una nota", Convert.ToString(CuadernosMenu.CuadernoSeleccionado.ObtenerIndiceDeLaNotaEnBaseDeDatos(numeroNota)));
+                historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Edición de nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito una nota", "Notas Menu", numeroNota);
+                //CrearHistorialCreacionNota(archivoManager);
+
                 CuadernosMenu.CuadernoSeleccionado.ModificarNota(numeroNota, notaNueva);
             }
         }
@@ -181,9 +194,12 @@ namespace CuadernosDigitales.Forms
             }
             else if(e.Button == MouseButtons.Left && sePuedeEditarNota)
             {
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Presionar una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nueva Nota para una posible edición de una nota.", "Nueva Nota", IndiceNota);
-                CrearHistorialVisitaFormulario(archivoManager);
+                Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nueva Nota para una posible edición de una nota.", "NuevaNota");
+                historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Presionar una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nueva Nota para una posible edición de una nota.", "Nueva Nota", IndiceNota);
+                //CrearHistorialVisitaFormulario(archivoManager);
 
                 NuevaNota nuevaNota = new NuevaNota(this, false);
                 AddOwnedForm(nuevaNota);
@@ -270,9 +286,12 @@ namespace CuadernosDigitales.Forms
 
                 ErrorProviderFiltro.SetError(FiltroComboBox, "Debe ingresar lo que desea buscar");
             }
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Se hizo una búsqueda", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} hizo una búsqueda de una o varias notas.", "Notas Menu", 0);
-            CrearHistorialBusqueda(archivoManager);
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Se hizo una búsqueda", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} hizo una búsqueda de una o varias notas.", null);
+            historial.AgregarHistorialALaBaseDeDatos(historial);
+
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Se hizo una búsqueda", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} hizo una búsqueda de una o varias notas.", "Notas Menu", 0);
+            //CrearHistorialBusqueda(archivoManager);
         }
 
         private void VerNotasButton_Click(object sender, EventArgs e)
@@ -290,9 +309,12 @@ namespace CuadernosDigitales.Forms
 
         private void VerOcultasButton_Click(object sender, EventArgs e)
         {
-            ArchivoHistorial archivoManagerHistorial = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManagerHistorial, "Presionar el boton de Ver Ocultas", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Notas Ocultas", "Notas Ocultas", 0);
-            CrearHistorialVisitaFormulario(archivoManagerHistorial);
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de Ver Notas Ocultas", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Notas Ocultas", "NotasOcultas");
+            historial.AgregarHistorialALaBaseDeDatos(historial);
+
+            //ArchivoHistorial archivoManagerHistorial = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManagerHistorial, "Presionar el boton de Ver Notas Ocultas", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Notas Ocultas", "Notas Ocultas", 0);
+            //CrearHistorialVisitaFormulario(archivoManagerHistorial);
 
             List<Nota> notasOcultas = new List<Nota>();
             buscandoOcultas = true;
@@ -316,9 +338,12 @@ namespace CuadernosDigitales.Forms
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Se elimino una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino una nota.", "Notas Menu", IndiceNota);
-            CrearHistorialEliminarNota(archivoManager);
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Se elimino una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino una nota.", Convert.ToString(CuadernosMenu.CuadernoSeleccionado.ObtenerIndiceDeLaNotaEnBaseDeDatos(IndiceNota)));
+            historial.AgregarHistorialALaBaseDeDatos(historial);
+
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Se elimino una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino una nota.", "Notas Menu", IndiceNota);
+            //CrearHistorialEliminarNota(archivoManager);
 
             cuadernoPadre.EliminarNota(notaSeleccionada);
             VerNotasButton_Click(sender, e);
@@ -347,10 +372,12 @@ namespace CuadernosDigitales.Forms
                 categoriaLabel.Text = "#"+c.Nombre;
                 categoriasPanel.Controls.Add(categoriaLabel);
             }
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar un cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Notas Menu", "NotasMenu");
+            historial.AgregarHistorialALaBaseDeDatos(historial);
 
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Presionar un cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Notas Menu", "Notas Menu", 0);
-            CrearHistorialVisitaFormulario(archivoManager);
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Presionar un cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Notas Menu", "Notas Menu", 0);
+            //CrearHistorialVisitaFormulario(archivoManager);
         }
         private void CrearHistorialCreacionNota(ArchivoHistorial archivoManager)
         {
@@ -363,10 +390,10 @@ namespace CuadernosDigitales.Forms
                 MessageBox.Show($"Se produjo el siguiente error: {exception}");
             }
         }
-        private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
-        {
-            archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
-        }
+        //private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
+        //{
+        //    archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
+        //}
         private void CrearHistorialVisitaFormulario(ArchivoHistorial archivoManager)
         {
             try

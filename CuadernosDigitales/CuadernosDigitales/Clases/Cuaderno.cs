@@ -34,6 +34,11 @@ namespace CuadernosDigitales
             get;
             set;
         }
+        public int IndiceCuaderno
+        {
+            get;
+            set;
+        }
         public Bitmap Imagen
         {
             get;
@@ -108,6 +113,20 @@ namespace CuadernosDigitales
                 
             }
             return notasOcultas;
+        }
+        public int ObtenerIndiceDeLaNotaEnBaseDeDatos(int posicionNota)
+        {
+            int indiceDeLaNotaEnBaseDeDatos = -1;
+
+            foreach (Nota nota in notas)
+            {
+                if (nota.Orden == posicionNota)
+                {
+                    indiceDeLaNotaEnBaseDeDatos = nota.IndiceNota;
+                }
+            }
+
+            return indiceDeLaNotaEnBaseDeDatos;
         }
     }
 }

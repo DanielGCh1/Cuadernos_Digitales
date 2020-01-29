@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CuadernosDigitales.Forms;
 using CuadernosDigitales.Clases;
+using DBConnection.Connection;
 
 namespace CuadernosDigitales.Forms
 {
     public partial class LoginForm : Form
     {
+        MyDBSQL myDBSQL;
+
         private readonly string rutaPorDefecto = AppDomain.CurrentDomain.BaseDirectory;
         private AdministradorArchivos administrador;
         public List<Usuario> Usuarios
@@ -39,6 +42,9 @@ namespace CuadernosDigitales.Forms
             administrador = new AdministradorArchivos();
             Usuarios = new List<Usuario>();
             Usuario = new Usuario();
+
+            myDBSQL = new MyDBSQL();
+            myDBSQL.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DBActual"].ConnectionString;
         }
         public LoginForm(Form form)
         {
@@ -138,7 +144,7 @@ namespace CuadernosDigitales.Forms
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            try
+        /*    try
             {
                 if (administrador.getUsuariosRegistrados().Count > 0)
                 {
@@ -148,7 +154,46 @@ namespace CuadernosDigitales.Forms
             catch(Exception ex)
             {
                 MessageBox.Show($"Se produjo el siguiente error: {ex}");
+            }*/
+            CargarUsuariosDeLaBaseDeDatos();
+        }
+
+        private void CargarUsuariosDeLaBaseDeDatos()
+        {
+            try
+            {
+                if (Usuario.CargarUsuariosDeLaBaseDeDatos().Count > 0)
+                {
+                    Usuarios = Usuario.CargarUsuariosDeLaBaseDeDatos();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Se produjo el siguiente error: {ex}");
+            }
+            //Usuario usuario = new Usuario();
+            //usuario.Nombre = "UsuarioDePrueba";
+            //usuario.NombreReal = "UsuarioDePrueba nombre real";
+            //usuario.Contraseña = "1234";
+
+            //myDBSQL.OpenConnection();
+            //try
+            //{
+            //    myDBSQL.BeginTransaction();
+            //    myDBSQL.EjectSQL(String.Format("INSERT INTO usuarios (`nombre_usuario`, `nombre_real`, `contrasenna`) VALUES ('{0}', '{1}', '{2}')",
+            //    usuario.Nombre, usuario.NombreReal, usuario.Contraseña));
+            //    myDBSQL.CommitTransaction();
+            //}
+            //catch (Exception e)
+            //{
+
+            //    MessageBox.Show($"Se produjo el siguiente error: {e}");
+            //}
+            //finally
+            //{
+            //    myDBSQL.CloseConnection();
+            //}
+
         }
 
     }

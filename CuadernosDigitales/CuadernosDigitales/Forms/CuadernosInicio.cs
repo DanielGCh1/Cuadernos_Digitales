@@ -88,9 +88,12 @@ namespace CuadernosDigitales
             DialogResult resultado = MessageBox.Show("¿Desea cerrar la aplicación?", "Confirmacion", MessageBoxButtons.YesNoCancel);
             if (resultado == DialogResult.Yes)
             {
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Salir del sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} salio del sistema.", "Ventana", 0);
-                CrearHistorialVisitaFormulario(archivoManager);
+                Historial historial = new Historial(Usuarios[IndiceUsuario].Nombre, "Salir del sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} salio del sistema.", "Ventana");
+                historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Salir del sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} salio del sistema.", "Ventana", 0);
+                //CrearHistorialVisitaFormulario(archivoManager);
                 Application.Exit();
             }
 
@@ -134,9 +137,12 @@ namespace CuadernosDigitales
             tituloLabel.Text = "CUADERNOS";
             //        Cuadernos cuadernos = new Cuadernos();
             //        MostrarFormEnPanel(cuadernos);
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Cuadernos", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Cuadernos", "Cuadernos", 0);
-            CrearHistorialVisitaFormulario(archivoManager);
+            Historial historial = new Historial(Usuarios[IndiceUsuario].Nombre, "Presionar el boton de Cuadernos", $"El usuario {Usuarios[IndiceUsuario].Nombre} ingreso al formulario de CuadernosMenu", "CuadernosMenu");
+            historial.AgregarHistorialALaBaseDeDatos(historial);
+
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Cuadernos", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Cuadernos", "Cuadernos", 0);
+            //CrearHistorialVisitaFormulario(archivoManager);
             AbrirForm<CuadernosMenu>();
         }
        
@@ -178,9 +184,12 @@ namespace CuadernosDigitales
                 IndiceUsuarioEstatico = IndiceUsuario;
                 usuarioLabel.Text = Usuarios[IndiceUsuario].Nombre;
 
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Ingreso al sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} ingreso al sistema.", "Cuadernos Menu", 0);
-                CrearHistorialVisitaFormulario(archivoManager);
+                Historial historial = new Historial(Usuarios[IndiceUsuario].Nombre, "Ingreso al sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} ingreso al sistema.", "CuadernosInicio");
+                historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Ingreso al sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} ingreso al sistema.", "Cuadernos Menu", 0);
+                //CrearHistorialVisitaFormulario(archivoManager);
             }
             else
             {
@@ -200,10 +209,10 @@ namespace CuadernosDigitales
         {
 
         }
-        private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
-        {
-            archivoManager.Historial = new Historial(DateTime.Now, Usuarios[IndiceUsuario].Nombre, accion, informacionAdicional, formulario, objeto);
-        }
+        //private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, string objeto)
+        //{
+        //    archivoManager.Historial = new Historial(DateTime.Now, Usuarios[IndiceUsuario].Nombre, accion, informacionAdicional, formulario, objeto);
+        //}
         private void CrearHistorialVisitaFormulario(ArchivoHistorial archivoManager)
         {
             try
@@ -223,9 +232,14 @@ namespace CuadernosDigitales
             {
                 CuadernosInicio cuadernosInicio = new CuadernosInicio();
                 cuadernosInicio.Usuarios = UsuariosEstaticos;
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Salir del sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} salio del sistema.", "Ventana", 0);
-                CrearHistorialVisitaFormulario(archivoManager);
+
+                Historial historial = new Historial(Usuarios[IndiceUsuario].Nombre, "Salir del sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} salio del sistema.", "Ventana");
+                historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Salir del sistema", $"El usuario {Usuarios[IndiceUsuario].Nombre} salio del sistema.", "Ventana", 0);
+                //CrearHistorialVisitaFormulario(archivoManager);
+
                 this.Close();
                 cuadernosInicio.Show();
             }
@@ -239,9 +253,13 @@ namespace CuadernosDigitales
             tituloLabel.Text = "EDITAR USUARIO";
             //        EditarUsuario editarUsuario = new EditarUsuario();
             //        MostrarFormEnPanel(editarUsuario);
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Editar Usuario", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Editar usuario", "Editar Usuario", 0);
-            CrearHistorialVisitaFormulario(archivoManager);
+
+            Historial historial = new Historial(Usuarios[IndiceUsuario].Nombre, "Presionar el boton de Editar Usuario", $"El usuario {Usuarios[IndiceUsuario].Nombre} ingreso al formulario de Editar usuario", "Editar Usuario");
+            historial.AgregarHistorialALaBaseDeDatos(historial);
+
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Editar Usuario", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Editar usuario", "Editar Usuario", 0);
+            //CrearHistorialVisitaFormulario(archivoManager);
             AbrirForm<EditarUsuario>();
         }
     }

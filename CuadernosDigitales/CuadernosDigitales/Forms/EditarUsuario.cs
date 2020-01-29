@@ -137,22 +137,27 @@ namespace CuadernosDigitales.Forms
             if (ContraseñaActualUsuario && NuevaContraseñaUsuario && RepetirNuevaContraseñaUsuario)
             {
                 CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Contraseña = Usuario.Contraseña;
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Edición de usuario", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito su contraseña", "Editar Usuario", CuadernosInicio.IndiceUsuarioEstatico);
-                CrearHistorialEdicionUsuario(archivoManager);
+
+                Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Edición de usuario", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito su contraseña", Convert.ToString(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Identificador));
+                historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Edición de usuario", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito su contraseña", "Editar Usuario", CuadernosInicio.IndiceUsuarioEstatico);
+                //CrearHistorialEdicionUsuario(archivoManager);
+
                 DialogResult dialogResult = MessageBox.Show("Se edito la contraseña correctamente");
                 LimpiarTextBoxYErroProvider();
-
+                Usuario.EditarContrasennaDeUsuarioEnLaBaseDeDatos(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico]);
                 administradorUsuarios.EditarUsuarios(CuadernosInicio.UsuariosEstaticos, rutaUsuarios);
             }
             else{
                 DialogResult dialogResult = MessageBox.Show("Datos incorrectos");
             }
         }
-        private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
-        {
-            archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
-        }
+        //private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
+        //{
+        //    archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
+        //}
         private void CrearHistorialVisitaFormulario(ArchivoHistorial archivoManager)
         {
             try

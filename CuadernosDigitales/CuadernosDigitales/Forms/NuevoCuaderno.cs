@@ -167,10 +167,10 @@ namespace CuadernosDigitales.Forms
             cuadernoCreado = DialogResult.Yes;
             this.Close();
         }
-        private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
-        {
-            archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
-        }
+        //private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
+        //{
+        //    archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
+        //}
         private void CrearHistorialVisitaFormulario(ArchivoHistorial archivoManager)
         {
             try
@@ -196,9 +196,12 @@ namespace CuadernosDigitales.Forms
 
         private void NuevoCuaderno_Load(object sender, EventArgs e)
         {
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Nuevo Cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nuevo Cuaderno", "Nuevo Cuaderno", 0);
-            CrearHistorialVisitaFormulario(archivoManager);
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de Nuevo Cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nuevo Cuaderno", "NuevoCuaderno");
+            historial.AgregarHistorialALaBaseDeDatos(historial);
+
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Nuevo Cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Nuevo Cuaderno", "NuevoCuaderno", 0);
+            //CrearHistorialVisitaFormulario(archivoManager);
         }
     }
 }

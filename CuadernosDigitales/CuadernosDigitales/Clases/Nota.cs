@@ -71,8 +71,11 @@ namespace CuadernosDigitales
         {
             get;
             set;
-
         }
-
+        public int IndiceNota
+        {
+            get;
+            set;
+        }
     }
 }

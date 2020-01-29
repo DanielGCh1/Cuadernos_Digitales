@@ -78,11 +78,12 @@ namespace CuadernosDigitales.Forms
 
         private void ButtonRegistrar_Click(object sender, EventArgs e)
         {
-            if(NombreUsuario && ContraseñaUsuario && RepetirContraseñaUsuario)
+            if(NombreUsuario && ContraseñaUsuario && RepetirContraseñaUsuario && NombreUsuarioCorrecto())
             {
-            //    
                 Usuarios.Add(Usuario);
-                administrador.GuardarUsuario(Usuario);
+            //    administrador.GuardarUsuario(Usuario);
+                Usuario.AgregarUsuarioALaBaseDeDatos(Usuario);
+
                 MessageBox.Show("Se registro el nuevo usuario exitosamente");
                 this.Close();
             }
@@ -144,7 +145,7 @@ namespace CuadernosDigitales.Forms
             {
                 if(Usuario.Contraseña == TextBoxRepetirContraseña.Text)
                 {
-                    Usuario.Identificador = Usuarios.Count;
+                    Usuario.Identificador = Usuarios.Count + 1;
                     RepetirContraseñaUsuario = true;
                 }
                 else
@@ -152,6 +153,19 @@ namespace CuadernosDigitales.Forms
                     errorProviderRepetirContraseña.SetError(TextBoxRepetirContraseña, "La nueva contraseña del Usuario es diferente al repetirla");
                     RepetirContraseñaUsuario = false;
                 }
+            }
+        }
+        private bool NombreUsuarioCorrecto()
+        {
+            if (TextBoxNombreRealUsuario.TextLength < 3)
+            {
+                ErrorProviderNombreRealUsuario.SetError(TextBoxNombreRealUsuario, "No ha ingresado nungun nombre real valido");
+                return false;
+            }
+            else
+            {
+                Usuario.NombreReal = TextBoxNombreRealUsuario.Text;
+                return true;
             }
         }
 

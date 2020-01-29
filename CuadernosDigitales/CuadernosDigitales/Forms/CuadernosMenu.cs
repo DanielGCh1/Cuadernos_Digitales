@@ -113,14 +113,18 @@ namespace CuadernosDigitales.Forms
 
             if (nuevoCuaderno.cuadernoCreado == DialogResult.Yes)
             {
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de crear nuevo cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo un nuevo cuaderno", "Nuevo Cuaderno", cuadernos.Count);
-                CrearHistorialCreacionCuaderno(archivoManager);
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de crear nuevo cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo un nuevo cuaderno", "Nuevo Cuaderno", cuadernos.Count);
+                //CrearHistorialCreacionCuaderno(archivoManager);
 
                 MostrarCuadernoEnPantalla(NuevoCuaderno.cuaderno);
                 NuevoCuaderno.cuaderno.Orden = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos.Count;
+                NuevoCuaderno.cuaderno.IndiceCuaderno = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos.Count + 1;
                 cuadernos.Add(NuevoCuaderno.cuaderno);
                 CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].AgregarCuaderno(NuevoCuaderno.cuaderno);
+
+                Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de crear nuevo cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo un nuevo cuaderno", Convert.ToString(NuevoCuaderno.cuaderno.IndiceCuaderno));
+                historial.AgregarHistorialALaBaseDeDatos(historial);
             }
            
         }
@@ -171,9 +175,12 @@ namespace CuadernosDigitales.Forms
             DialogResult resultado =  MessageBox.Show("¿Esta seguro de querer eliminar el cuaderno: "+CuadernoSeleccionado.Nombre+"?", "Alerta",MessageBoxButtons.YesNoCancel);
             if(resultado == DialogResult.Yes)
             {
-                ArchivoHistorial archivoManager = new ArchivoHistorial();
-                CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Eliminar Cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino un cuaderno.", "Cuadernos", IndiceCuaderno);
-                CrearHistorialEliminarCuaderno(archivoManager);
+                Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de Eliminar Cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino un cuaderno.", Convert.ToString(CuadernoSeleccionado.IndiceCuaderno));
+                historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                //ArchivoHistorial archivoManager = new ArchivoHistorial();
+                //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Eliminar Cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino un cuaderno.", "Cuadernos", IndiceCuaderno);
+                //CrearHistorialEliminarCuaderno(archivoManager);
 
                 cuadernos.Remove(CuadernoSeleccionado);
                 cuadernosContainer.Controls.Clear();
@@ -235,10 +242,12 @@ namespace CuadernosDigitales.Forms
             {
                 ErrorProviderFiltro.SetError(FiltroComboBox, "Debe ingresar lo que desea buscar");
             }
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Se hizo una búsqueda", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} hizo una búsqueda de uno o varios Cuadernos.", null);
+            historial.AgregarHistorialALaBaseDeDatos(historial);
 
-            ArchivoHistorial archivoManager = new ArchivoHistorial();
-            CargarInformacionActividadUsuario(archivoManager, "Se hizo una búsqueda", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} hizo una búsqueda de uno o varios Cuadernos.", "Cuadernos", 0);
-            CrearHistorialBusqueda(archivoManager);
+            //ArchivoHistorial archivoManager = new ArchivoHistorial();
+            //CargarInformacionActividadUsuario(archivoManager, "Se hizo una búsqueda", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} hizo una búsqueda de uno o varios Cuadernos.", "Cuadernos", 0);
+            //CrearHistorialBusqueda(archivoManager);
         }
 
         private void BuscarTextBox_TextChanged(object sender, EventArgs e)
@@ -256,10 +265,10 @@ namespace CuadernosDigitales.Forms
                 MessageBox.Show($"Se produjo el siguiente error: {exception}");
             }
         }
-        private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
-        {
-            archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
-        }
+        //private void CargarInformacionActividadUsuario(ArchivoHistorial archivoManager, String accion, String informacionAdicional, string formulario, int objeto)
+        //{
+        //    archivoManager.Historial = new Historial(DateTime.Now, CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, accion, informacionAdicional, formulario, objeto);
+        //}
         private void CrearHistorialVisitaFormulario(ArchivoHistorial archivoManager)
         {
             try
@@ -295,7 +304,7 @@ namespace CuadernosDigitales.Forms
         }
         private void Cuadernos_Load(object sender, EventArgs e)
         {
-            CargarCuadernosDeBaseDeDatos();
+         //   CargarCuadernosDeBaseDeDatos();
         }
         private void CargarCuadernosDeBaseDeDatos()
         {

@@ -22,8 +22,8 @@ namespace CuadernosDigitales
             path= path.Replace(":", "_");
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
-                var line =  $"Fecha y hora: {Historial.FechaYHora}, Nombre de usuario: {Historial.Usuario}, Formulario al que ingreso el usuario: {Historial.Formulario}, Acción hecha por el usuario: {Historial.Accion}, Informacion adicional: {Historial.InformacionAdicional}";
-                streamWriter.WriteLine(line);
+                //var line =  $"Fecha y hora: {Historial.FechaYHora}, Nombre de usuario: {Historial.Usuario}, Formulario al que ingreso el usuario: {Historial.Formulario}, Acción hecha por el usuario: {Historial.Accion}, Informacion adicional: {Historial.InformacionAdicional}";
+                //streamWriter.WriteLine(line);
                 streamWriter.Flush();  
                 return path;
             }

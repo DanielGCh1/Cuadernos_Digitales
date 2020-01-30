@@ -96,9 +96,9 @@ namespace CuadernosDigitales.Forms
         private void TextBoxUsuario_Leave(object sender, EventArgs e)
         {
             Boolean sinErrores = true;
-            if (TextBoxUsuario.TextLength < 3)
+            if (TextBoxUsuario.TextLength < 3 || TextBoxUsuario.TextLength > 45)
             {
-                errorProviderLogin.SetError(TextBoxUsuario, "Ingrese el nombre del usuario");
+                errorProviderLogin.SetError(TextBoxUsuario, "Ingrese el nombre del usuario o uno con el largo correcto");
                 NombreUsuario = false;
             }
             else
@@ -122,9 +122,9 @@ namespace CuadernosDigitales.Forms
 
         private void TextBoxContraseña_Leave(object sender, EventArgs e)
         {
-            if (TextBoxContraseña.TextLength < 3)
+            if (TextBoxContraseña.TextLength < 3 || TextBoxContraseña.TextLength > 45)
             {
-                errorProviderContraseña.SetError(TextBoxContraseña, "Ingrese la nueva contraseña del Usuario");
+                errorProviderContraseña.SetError(TextBoxContraseña, "Ingrese la nueva contraseña del Usuario o una con el largo correcto");
                 ContraseñaUsuario = false;
             }
             else
@@ -136,7 +136,7 @@ namespace CuadernosDigitales.Forms
 
         private void TextBoxRepetirContraseña_Leave(object sender, EventArgs e)
         {
-            if (TextBoxRepetirContraseña.TextLength < 3)
+            if (TextBoxRepetirContraseña.TextLength < 3 || TextBoxRepetirContraseña.TextLength > 45)
             {
                 errorProviderRepetirContraseña.SetError(TextBoxRepetirContraseña, "Repita la nueva contraseña del Usuario");
                 RepetirContraseñaUsuario = false;
@@ -157,9 +157,9 @@ namespace CuadernosDigitales.Forms
         }
         private bool NombreUsuarioCorrecto()
         {
-            if (TextBoxNombreRealUsuario.TextLength < 3)
+            if (TextBoxNombreRealUsuario.TextLength < 3 || TextBoxNombreRealUsuario.TextLength > 45)
             {
-                ErrorProviderNombreRealUsuario.SetError(TextBoxNombreRealUsuario, "No ha ingresado nungun nombre real valido");
+                ErrorProviderNombreRealUsuario.SetError(TextBoxNombreRealUsuario, "No ha ingresado nungun nombre real valido o uno con el largo correcto");
                 return false;
             }
             else
@@ -168,6 +168,5 @@ namespace CuadernosDigitales.Forms
                 return true;
             }
         }
-
     }
 }

@@ -47,6 +47,7 @@
             this.TextBoxNombreRealUsuario = new System.Windows.Forms.TextBox();
             this.LabelNombreRealUsuario = new System.Windows.Forms.Label();
             this.ErrorProviderNombreRealUsuario = new System.Windows.Forms.ErrorProvider(this.components);
+            this.LabelMinimoYMaximoCaracteres = new System.Windows.Forms.Label();
             this.cabezaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
@@ -110,7 +111,7 @@
             this.ButtonRegistrar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ButtonRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonRegistrar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ButtonRegistrar.Location = new System.Drawing.Point(380, 328);
+            this.ButtonRegistrar.Location = new System.Drawing.Point(394, 363);
             this.ButtonRegistrar.Name = "ButtonRegistrar";
             this.ButtonRegistrar.Size = new System.Drawing.Size(94, 33);
             this.ButtonRegistrar.TabIndex = 9;
@@ -167,7 +168,7 @@
             this.ButtonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ButtonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCancelar.ForeColor = System.Drawing.Color.Red;
-            this.ButtonCancelar.Location = new System.Drawing.Point(65, 326);
+            this.ButtonCancelar.Location = new System.Drawing.Point(64, 363);
             this.ButtonCancelar.Name = "ButtonCancelar";
             this.ButtonCancelar.Size = new System.Drawing.Size(94, 33);
             this.ButtonCancelar.TabIndex = 10;
@@ -233,13 +234,25 @@
             // 
             this.ErrorProviderNombreRealUsuario.ContainerControl = this;
             // 
+            // LabelMinimoYMaximoCaracteres
+            // 
+            this.LabelMinimoYMaximoCaracteres.AutoSize = true;
+            this.LabelMinimoYMaximoCaracteres.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LabelMinimoYMaximoCaracteres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMinimoYMaximoCaracteres.Location = new System.Drawing.Point(12, 338);
+            this.LabelMinimoYMaximoCaracteres.Name = "LabelMinimoYMaximoCaracteres";
+            this.LabelMinimoYMaximoCaracteres.Size = new System.Drawing.Size(349, 17);
+            this.LabelMinimoYMaximoCaracteres.TabIndex = 15;
+            this.LabelMinimoYMaximoCaracteres.Text = "NOTA: Minimo 3 a Maximo 45 Caracteres por espacio.";
+            // 
             // LoginRegistrarse
             // 
             this.AcceptButton = this.ButtonRegistrar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.ButtonCancelar;
-            this.ClientSize = new System.Drawing.Size(529, 373);
+            this.ClientSize = new System.Drawing.Size(529, 408);
+            this.Controls.Add(this.LabelMinimoYMaximoCaracteres);
             this.Controls.Add(this.TextBoxNombreRealUsuario);
             this.Controls.Add(this.LabelNombreRealUsuario);
             this.Controls.Add(this.TextBoxRepetirContraseña);
@@ -287,6 +300,7 @@
         private System.Windows.Forms.TextBox TextBoxNombreRealUsuario;
         private System.Windows.Forms.Label LabelNombreRealUsuario;
         private System.Windows.Forms.ErrorProvider ErrorProviderNombreRealUsuario;
+        private System.Windows.Forms.Label LabelMinimoYMaximoCaracteres;
     }
 }
 

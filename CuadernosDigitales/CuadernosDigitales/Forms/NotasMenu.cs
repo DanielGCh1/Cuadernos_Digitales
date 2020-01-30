@@ -338,7 +338,7 @@ namespace CuadernosDigitales.Forms
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Se elimino una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino una nota.", Convert.ToString(CuadernosMenu.CuadernoSeleccionado.ObtenerIndiceDeLaNotaEnBaseDeDatos(IndiceNota)));
+            Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Se elimino una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino una nota.", Convert.ToString(notaSeleccionada.IndiceNota));
             historial.AgregarHistorialALaBaseDeDatos(historial);
 
             //ArchivoHistorial archivoManager = new ArchivoHistorial();

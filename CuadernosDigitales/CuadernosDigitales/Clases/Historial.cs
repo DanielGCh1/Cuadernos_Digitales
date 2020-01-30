@@ -74,7 +74,7 @@ namespace CuadernosDigitales
                 }
                 else
                 {
-                    myDBSQL.EjectSQL(string.Format("insert into historiales (`usuarios_idusuarios`, `fecha_y_hora`, `usuario`, `accion`, `informacion_adicional`, `objeto`) values ('{0}', '{1}', '{2}', '{3}', '{4}')",
+                    myDBSQL.EjectSQL(string.Format("insert into historiales (`usuarios_idusuarios`, `fecha_y_hora`, `usuario`, `accion`, `informacion_adicional`) values ('{0}', '{1}', '{2}', '{3}', '{4}')",
                     historial.IndiceUsuario , Convert.ToString(historial.FechaYHora), historial.Usuario, historial.Accion, historial.InformacionAdicional));
                 }
                 myDBSQL.CommitTransaction();

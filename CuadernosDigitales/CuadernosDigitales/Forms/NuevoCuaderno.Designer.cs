@@ -36,6 +36,8 @@
             this.agregarCategoriaButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.nuevoCuadernoPanel = new System.Windows.Forms.Panel();
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria = new System.Windows.Forms.Label();
+            this.LabelMinimoYMaximoCaracteresParaNombre = new System.Windows.Forms.Label();
             this.idPantallaLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.colorSeleccionadoPanel = new System.Windows.Forms.Panel();
@@ -117,6 +119,8 @@
             // 
             this.nuevoCuadernoPanel.BackColor = System.Drawing.SystemColors.Control;
             this.nuevoCuadernoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nuevoCuadernoPanel.Controls.Add(this.LabelMinimoYMaximoDeCaracteresPorCategoria);
+            this.nuevoCuadernoPanel.Controls.Add(this.LabelMinimoYMaximoCaracteresParaNombre);
             this.nuevoCuadernoPanel.Controls.Add(this.idPantallaLabel);
             this.nuevoCuadernoPanel.Controls.Add(this.flowLayoutPanel1);
             this.nuevoCuadernoPanel.Controls.Add(this.colorSeleccionadoPanel);
@@ -136,6 +140,28 @@
             this.nuevoCuadernoPanel.Name = "nuevoCuadernoPanel";
             this.nuevoCuadernoPanel.Size = new System.Drawing.Size(696, 471);
             this.nuevoCuadernoPanel.TabIndex = 9;
+            // 
+            // LabelMinimoYMaximoDeCaracteresPorCategoria
+            // 
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.AutoSize = true;
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.Location = new System.Drawing.Point(174, 277);
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.Name = "LabelMinimoYMaximoDeCaracteresPorCategoria";
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.Size = new System.Drawing.Size(359, 17);
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.TabIndex = 27;
+            this.LabelMinimoYMaximoDeCaracteresPorCategoria.Text = "NOTA: Minimo 3 a Maximo 45 Caracteres por categoria.";
+            // 
+            // LabelMinimoYMaximoCaracteresParaNombre
+            // 
+            this.LabelMinimoYMaximoCaracteresParaNombre.AutoSize = true;
+            this.LabelMinimoYMaximoCaracteresParaNombre.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LabelMinimoYMaximoCaracteresParaNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMinimoYMaximoCaracteresParaNombre.Location = new System.Drawing.Point(174, 121);
+            this.LabelMinimoYMaximoCaracteresParaNombre.Name = "LabelMinimoYMaximoCaracteresParaNombre";
+            this.LabelMinimoYMaximoCaracteresParaNombre.Size = new System.Drawing.Size(369, 17);
+            this.LabelMinimoYMaximoCaracteresParaNombre.TabIndex = 26;
+            this.LabelMinimoYMaximoCaracteresParaNombre.Text = "NOTA: Minimo 3 a Maximo 45 caracteres para el nombre.";
             // 
             // idPantallaLabel
             // 
@@ -366,11 +392,11 @@
             this.crearCuadernoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.crearCuadernoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.crearCuadernoButton.ForeColor = System.Drawing.Color.LightGray;
-            this.crearCuadernoButton.Location = new System.Drawing.Point(549, 424);
+            this.crearCuadernoButton.Location = new System.Drawing.Point(438, 424);
             this.crearCuadernoButton.Name = "crearCuadernoButton";
-            this.crearCuadernoButton.Size = new System.Drawing.Size(133, 34);
+            this.crearCuadernoButton.Size = new System.Drawing.Size(244, 34);
             this.crearCuadernoButton.TabIndex = 12;
-            this.crearCuadernoButton.Text = "CREAR CUADERNO";
+            this.crearCuadernoButton.Text = "CREAR NUEVO CUADERNO";
             this.crearCuadernoButton.UseVisualStyleBackColor = false;
             this.crearCuadernoButton.Click += new System.EventHandler(this.CrearCuadernoButton_Click);
             // 
@@ -435,5 +461,7 @@
         private System.Windows.Forms.Label nuevoCuadernoLabel;
         private System.Windows.Forms.Button closeAppButton;
         public System.Windows.Forms.Label idPantallaLabel;
+        private System.Windows.Forms.Label LabelMinimoYMaximoDeCaracteresPorCategoria;
+        private System.Windows.Forms.Label LabelMinimoYMaximoCaracteresParaNombre;
     }
 }

@@ -62,7 +62,7 @@ namespace CuadernosDigitales.Forms
                 {
                     CuadernoSeleccionado = new Cuaderno();
                     CuadernoSeleccionado = cuaderno;
-                    IndiceCuaderno = i;
+            //        IndiceCuaderno = i;
                 }
             }
 /*            foreach (Cuaderno cuaderno in cuadernos)

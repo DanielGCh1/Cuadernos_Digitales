@@ -278,9 +278,9 @@
             this.cuerpoPanel.BackColor = System.Drawing.SystemColors.Control;
             this.cuerpoPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cuerpoPanel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cuerpoPanel.Location = new System.Drawing.Point(51, 44);
+            this.cuerpoPanel.Location = new System.Drawing.Point(52, 44);
             this.cuerpoPanel.Name = "cuerpoPanel";
-            this.cuerpoPanel.Size = new System.Drawing.Size(798, 578);
+            this.cuerpoPanel.Size = new System.Drawing.Size(797, 578);
             this.cuerpoPanel.TabIndex = 2;
             // 
             // CuadernosInicio

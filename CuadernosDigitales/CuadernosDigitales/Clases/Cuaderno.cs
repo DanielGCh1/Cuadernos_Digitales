@@ -25,6 +25,11 @@ namespace CuadernosDigitales
             myDBSQL = new MyDBSQL();
             myDBSQL.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DBActual"].ConnectionString;
         }
+        public List<Nota> Notas
+        {
+            get;
+            set;
+        }
         public List<Categoria> Categorias
         {
             get;
@@ -79,11 +84,11 @@ namespace CuadernosDigitales
 
         public int BuscarNota(string name)
         {
-            foreach(Nota nota in notas)
+            foreach(Nota nota in Notas)
             {
                 if(nota.Titulo == name)
                 {
-                    return notas.IndexOf(nota);
+                    return Notas.IndexOf(nota);
                 }
             }
 
@@ -91,7 +96,7 @@ namespace CuadernosDigitales
         }
         public Nota BuscarNota(string name, bool sinNumero)
         {
-            foreach (Nota nota in notas)
+            foreach (Nota nota in Notas)
             {
                 if (nota.Titulo == name)
                 {
@@ -103,16 +108,16 @@ namespace CuadernosDigitales
         }
         public void EliminarNota(Nota nota)
         {
-            notas.Remove(nota);
+            Notas.Remove(nota);
         }
 
         public void ModificarNota(int num, Nota nota)
         {
-            notas[num] = nota;
+            Notas[num] = nota;
         }
         public string ObtenerNombre(int num)
         {
-            return notas[num].Titulo;
+            return Notas[num].Titulo;
         }
 
         public List<Nota> getNotasOcultas()
@@ -132,7 +137,7 @@ namespace CuadernosDigitales
         {
             int indiceDeLaNotaEnBaseDeDatos = -1;
 
-            foreach (Nota nota in notas)
+            foreach (Nota nota in Notas)
             {
                 if (nota.Orden == posicionNota)
                 {
@@ -163,6 +168,10 @@ namespace CuadernosDigitales
 
                     Cuadernos_Y_Categorias cuadernos_Y_Categorias = new Cuadernos_Y_Categorias();
                     cuaderno.Categorias = cuadernos_Y_Categorias.CargarCategoriasDeCuadernosDeLaBaseDeDatos(cuaderno.IndiceCuaderno);
+
+                    Nota nota = new Nota();
+
+                    cuaderno.Notas = nota.CargarNotasDeLaBaseDeDatos(cuaderno.IndiceCuaderno);
                     cuadernos.Add(cuaderno);
 
                     Console.WriteLine(cuaderno.Categorias);
@@ -237,6 +246,9 @@ namespace CuadernosDigitales
 
                 Cuadernos_Y_Categorias cuadernos_Y_Categorias = new Cuadernos_Y_Categorias();
                 cuadernos_Y_Categorias.EliminarRelacionDeCategoriasYCuadernoDeLaBaseDeDatos(cuaderno.IndiceCuaderno);
+
+                Nota nota = new Nota();
+                nota.EliminarNotasDeLaBaseDeDatos(cuaderno.IndiceCuaderno);
 
                 myDBSQL.EjectSQL(string.Format("delete from cuadernos where `idcuadernos` = '{0}'",
                 cuaderno.IndiceCuaderno));

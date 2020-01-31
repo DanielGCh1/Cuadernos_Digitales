@@ -29,11 +29,13 @@ namespace CuadernosDigitales.Forms
         public NotasMenu()
         {
             InitializeComponent();
-        //    CargarNotasDeBaseDeDatos();
+            CargarNotasDeBaseDeDatos();
 
             cuadernoPadre = CuadernosMenu.CuadernoSeleccionado;
+
+            Console.WriteLine(CuadernosMenu.CuadernoSeleccionado);
             nombreCuadernoLabel.Text = cuadernoPadre.Nombre;
-            cargarNotas(cuadernoPadre.getListaDeNotas(),false);
+            cargarNotas(cuadernoPadre.Notas,false);
             panelSeleccionadaAux = new Panel();
             sePuedeEditarNota = true;
         }
@@ -66,9 +68,21 @@ namespace CuadernosDigitales.Forms
 
             notaNueva = NuevaNota.nota;
             notaNueva.Orden = CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count;
-            notaNueva.IndiceNota = CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count + 1;
-            CuadernosMenu.CuadernoSeleccionado.agregarNota(notaNueva);
-            if(!notaNueva.Privacidad) MostrarNotaEnPantalla(notaNueva);
+
+            Categoria categoria = new Categoria();
+            categoria.Nombre = notaNueva.Categoria;
+            categoria.AgregarCategoriaALaBaseDeDatos(categoria);
+
+            categoria = categoria.CargarCategoriaDeLaBaseDeDatos(categoria.Nombre);
+
+            notaNueva.AgregarNotaALaBaseDeDatos(CuadernosMenu.CuadernoSeleccionado.IndiceCuaderno, notaNueva, categoria.IndiceCategoria);
+
+            CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos[CuadernosMenu.CuadernoSeleccionado.Orden].Notas = notaNueva.CargarNotasDeLaBaseDeDatos(CuadernosMenu.CuadernoSeleccionado.IndiceCuaderno);
+
+            CuadernosMenu.CuadernoSeleccionado.Notas = notaNueva.CargarNotasDeLaBaseDeDatos(CuadernosMenu.CuadernoSeleccionado.IndiceCuaderno);
+
+            //   CuadernosMenu.CuadernoSeleccionado.agregarNota(notaNueva);
+            if (!notaNueva.Privacidad) MostrarNotaEnPantalla(notaNueva);
 
             Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de crear nueva nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo una nueva nota", Convert.ToString(notaNueva.IndiceNota));
             historial.AgregarHistorialALaBaseDeDatos(historial);
@@ -76,7 +90,7 @@ namespace CuadernosDigitales.Forms
         public void NotaEditada()
         {
             int numeroNota = CuadernosMenu.CuadernoSeleccionado.BuscarNota(notaSeleccionada.Titulo);
-            
+
             if (numeroNota!=-1)
             {
                 foreach(Control item in notasContainer.Controls)
@@ -98,6 +112,12 @@ namespace CuadernosDigitales.Forms
                 }
                 Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Edición de nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito una nota", Convert.ToString(CuadernosMenu.CuadernoSeleccionado.ObtenerIndiceDeLaNotaEnBaseDeDatos(numeroNota)));
                 historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                notaNueva.IndiceNota = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos[CuadernosMenu.CuadernoSeleccionado.Orden].Notas[numeroNota].IndiceNota;
+                notaNueva.EditarNotaEnLaBaseDeDatos(notaNueva);
+
+                CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos[CuadernosMenu.CuadernoSeleccionado.Orden].Notas = notaNueva.CargarNotasDeLaBaseDeDatos(CuadernosMenu.CuadernoSeleccionado.IndiceCuaderno);
+
 
                 //ArchivoHistorial archivoManager = new ArchivoHistorial();
                 //CargarInformacionActividadUsuario(archivoManager, "Edición de nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} edito una nota", "Notas Menu", numeroNota);
@@ -152,17 +172,17 @@ namespace CuadernosDigitales.Forms
             
             Panel notaSelect = sender as Panel;
 
-            for (int i = 0; i < cuadernoPadre.getListaDeNotas().Count; i++)
+            for (int i = 0; i < cuadernoPadre.Notas.Count; i++)
             {
-                Nota nota = (cuadernoPadre.getListaDeNotas())[i];
+                Nota nota = (cuadernoPadre.Notas)[i];
                 if (notaSelect.Name == nota.Titulo)
                 {
                     notaSeleccionada = new Nota();
                     notaSeleccionada = nota;
-                    IndiceNota = i;
+            //        IndiceNota = i;
                 }
             }
-            foreach (Nota nota in cuadernoPadre.getListaDeNotas())
+            foreach (Nota nota in cuadernoPadre.Notas)
             {
                 if (notaSelect.Name == nota.Titulo)
                 {
@@ -229,14 +249,14 @@ namespace CuadernosDigitales.Forms
 
                 if (buscandoOcultas)
                 {
-                    notasDondeBuscar = cuadernoPadre.getNotasOcultas();
+                    notasDondeBuscar = cuadernoPadre.Notas;
                 }
                 else
                 {
-                    notasDondeBuscar = cuadernoPadre.getListaDeNotas();
+                    notasDondeBuscar = cuadernoPadre.Notas;
                 }
 
-                foreach (Nota nota in cuadernoPadre.getListaDeNotas())
+                foreach (Nota nota in cuadernoPadre.Notas)
                 {
                     if (FiltroComboBox.SelectedItem.ToString() == "NOMBRE")
                     {
@@ -303,7 +323,7 @@ namespace CuadernosDigitales.Forms
             nuevaNotaButton.Visible = true;
             verOcultasButton.Visible = true;
             buscarCuadernoTextBox.Text = "";
-            cargarNotas(cuadernoPadre.getListaDeNotas(), false);
+            cargarNotas(cuadernoPadre.Notas, false);
             sePuedeEditarNota = true;
         }
 
@@ -318,7 +338,7 @@ namespace CuadernosDigitales.Forms
 
             List<Nota> notasOcultas = new List<Nota>();
             buscandoOcultas = true;
-            notasOcultas = cuadernoPadre.getNotasOcultas();
+            notasOcultas = cuadernoPadre.Notas;
 
             if (notasOcultas != null)
             {
@@ -344,6 +364,10 @@ namespace CuadernosDigitales.Forms
             //ArchivoHistorial archivoManager = new ArchivoHistorial();
             //CargarInformacionActividadUsuario(archivoManager, "Se elimino una nota", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino una nota.", "Notas Menu", IndiceNota);
             //CrearHistorialEliminarNota(archivoManager);
+            Nota nota = new Nota();
+            nota.EliminarNotaDeLaBaseDeDatos(notaSeleccionada);
+
+            CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos[CuadernosMenu.CuadernoSeleccionado.Orden].Notas = nota.CargarNotasDeLaBaseDeDatos(CuadernosMenu.CuadernoSeleccionado.IndiceCuaderno);
 
             cuadernoPadre.EliminarNota(notaSeleccionada);
             VerNotasButton_Click(sender, e);
@@ -356,7 +380,6 @@ namespace CuadernosDigitales.Forms
 
         private void NotasMenu_Load(object sender, EventArgs e)
         {
-
             foreach (Categoria c in cuadernoPadre.Categorias)
             {
                 Label categoriaLabel = new Label();
@@ -435,7 +458,7 @@ namespace CuadernosDigitales.Forms
                 nota.Categoria = "Hola";
                 nota.ColorDeLetra = Color.FromName("Black");
                 nota.Color = Color.FromName("Red");
-                Font font = new Font("sdfsdf", 11);
+                Font font = new Font("Microsoft Sans Serif", 11);
 
                 nota.Fuente = font;
                 nota.Contenido = "Hola que hace";

@@ -74,6 +74,7 @@
     <Compile Include="Clases\Cuaderno.cs" />
     <Compile Include="Clases\Cuadernos_Y_Categorias.cs" />
     <Compile Include="Clases\Encriptacion.cs" />
+    <Compile Include="Clases\Fuente.cs" />
     <Compile Include="Clases\Historial.cs" />
     <Compile Include="Clases\Nota.cs" />
     <Compile Include="Forms\EditarUsuario.cs">

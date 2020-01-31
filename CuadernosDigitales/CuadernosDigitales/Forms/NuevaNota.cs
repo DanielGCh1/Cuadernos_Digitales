@@ -142,6 +142,7 @@ namespace CuadernosDigitales.Forms
             {
                 nota.FechaDeModificacion = DateTime.Now;
                 NotasMenu.notaNueva = nota;
+
                 MessageBox.Show(nota.Titulo);
             }
             if (informacionCompleta)

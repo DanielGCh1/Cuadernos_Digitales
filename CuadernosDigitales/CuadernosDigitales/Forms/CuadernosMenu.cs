@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CuadernosDigitales.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -117,14 +118,23 @@ namespace CuadernosDigitales.Forms
                 //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de crear nuevo cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo un nuevo cuaderno", "Nuevo Cuaderno", cuadernos.Count);
                 //CrearHistorialCreacionCuaderno(archivoManager);
 
-                MostrarCuadernoEnPantalla(NuevoCuaderno.cuaderno);
                 NuevoCuaderno.cuaderno.Orden = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos.Count;
-                NuevoCuaderno.cuaderno.IndiceCuaderno = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos.Count + 1;
-                cuadernos.Add(NuevoCuaderno.cuaderno);
-                CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].AgregarCuaderno(NuevoCuaderno.cuaderno);
+                NuevoCuaderno.cuaderno.AgregarCuadernoALaBaseDeDatos(NuevoCuaderno.cuaderno);
 
-                Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de crear nuevo cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo un nuevo cuaderno", Convert.ToString(NuevoCuaderno.cuaderno.IndiceCuaderno));
+                cuadernos = NuevoCuaderno.cuaderno.CargarCuadernosDeLaBaseDeDatos();
+                CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos = cuadernos;
+                
+                
+                int indiceDelNuevoCuaderno = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos[CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos.Count - 1].IndiceCuaderno;
+
+                Cuadernos_Y_Categorias cuadernos_Y_Categorias = new Cuadernos_Y_Categorias();
+                cuadernos_Y_Categorias.AgregarRelacionYCategoriasDeCuadernoALaBaseDeDatos(indiceDelNuevoCuaderno, NuevoCuaderno.cuaderno.Categorias);
+                cuadernos = NuevoCuaderno.cuaderno.CargarCuadernosDeLaBaseDeDatos();
+
+                Historial historial = new Historial(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre, "Presionar el boton de crear nuevo cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} creo un nuevo cuaderno", Convert.ToString(indiceDelNuevoCuaderno));
                 historial.AgregarHistorialALaBaseDeDatos(historial);
+
+                MostrarCuadernoEnPantalla(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos[CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos.Count - 1]);
             }
            
         }
@@ -133,7 +143,7 @@ namespace CuadernosDigitales.Forms
         {
             UCCuadernoDigital cuadernoDigital = new UCCuadernoDigital(this);
             cuadernoDigital.nombreDeCuaderno = cuaderno.Nombre;
-            cuadernoDigital.picture = cuaderno.Imagen;
+            cuadernoDigital.picture = ImagenSelecionada(cuaderno)/*cuaderno.Imagen Properties.Resources.Black*/;
             cuadernoDigital.namePicture = cuaderno.Nombre;
             cuadernosContainer.Controls.Add(cuadernoDigital);
         }
@@ -181,8 +191,9 @@ namespace CuadernosDigitales.Forms
                 //ArchivoHistorial archivoManager = new ArchivoHistorial();
                 //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Eliminar Cuaderno", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} elimino un cuaderno.", "Cuadernos", IndiceCuaderno);
                 //CrearHistorialEliminarCuaderno(archivoManager);
-
-                cuadernos.Remove(CuadernoSeleccionado);
+                CuadernoSeleccionado.EliminarCuadernoDeLaBaseDeDatos(CuadernoSeleccionado);
+                CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos = CuadernoSeleccionado.CargarCuadernosDeLaBaseDeDatos();
+                cuadernos = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos;
                 cuadernosContainer.Controls.Clear();
                 CargarCuadernos(cuadernos);
                 AtrasButton_Click(sender, e);
@@ -304,6 +315,10 @@ namespace CuadernosDigitales.Forms
         }
         private void Cuadernos_Load(object sender, EventArgs e)
         {
+            Cuaderno cuaderno = new Cuaderno();
+            CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos = cuaderno.CargarCuadernosDeLaBaseDeDatos();
+            cuadernos = CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos;
+            CargarCuadernos(CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].cuadernos);
          //   CargarCuadernosDeBaseDeDatos();
         }
         private void CargarCuadernosDeBaseDeDatos()
@@ -334,6 +349,54 @@ namespace CuadernosDigitales.Forms
             cuadernos.Add(cuadern);
             CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].AgregarCuaderno(cuadern);
             CargarCuadernos(cuadernos);
+        }
+        private Bitmap ImagenSelecionada(Cuaderno cuaderno)
+        {
+            Bitmap imagenSeleccionada;
+
+            switch (cuaderno.Color.Name)
+            {
+                case "Green":
+                    imagenSeleccionada =  Properties.Resources.Green;
+                    break;
+                case "Red":
+                    imagenSeleccionada = Properties.Resources.Red;
+                    break;
+                case "Orange":
+                    imagenSeleccionada = Properties.Resources.Orange;
+                    break;
+                case "Yellow":
+                    imagenSeleccionada = Properties.Resources.Yellow;
+                    break;
+                case "Blue":
+                    imagenSeleccionada = Properties.Resources.Blue;
+                    break;
+                case "DeepSkyBlue":
+                    imagenSeleccionada = Properties.Resources.DeepSkyBlue;
+                    break;
+                case "DeepPink":
+                    imagenSeleccionada = Properties.Resources.DeepPink;
+                    break;
+                case "Pink":
+                    imagenSeleccionada = Properties.Resources.Pink;
+                    break;
+                case "Purple":
+                    imagenSeleccionada = Properties.Resources.Purple;
+                    break;
+                case "White":
+                    imagenSeleccionada = Properties.Resources.White;
+                    break;
+                case "Gray":
+                    imagenSeleccionada = Properties.Resources.Gray;
+                    break;
+                case "Black":
+                    imagenSeleccionada = Properties.Resources.Black;
+                    break;
+                default:
+                    imagenSeleccionada = Properties.Resources.Black;
+                    break;
+            }
+            return imagenSeleccionada;
         }
     }
 }

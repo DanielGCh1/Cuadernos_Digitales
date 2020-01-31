@@ -140,6 +140,7 @@
             this.categoriasPanel.Name = "categoriasPanel";
             this.categoriasPanel.Size = new System.Drawing.Size(775, 40);
             this.categoriasPanel.TabIndex = 17;
+            this.categoriasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.categoriasPanel_Paint);
             // 
             // verOcultasButton
             // 

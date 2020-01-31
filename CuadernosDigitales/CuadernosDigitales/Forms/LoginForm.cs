@@ -171,6 +171,12 @@ namespace CuadernosDigitales.Forms
             {
                 MessageBox.Show($"Se produjo el siguiente error: {ex}");
             }
+            //System.Drawing.Color color = new Color();
+
+            //Categoria categoria = new Categoria();
+            //categoria.Nombre = "Hola";
+            //categoria.AgregarCategoriaALaBaseDeDatos(categoria);
+
             //Usuario usuario = new Usuario();
             //usuario.Nombre = "UsuarioDePrueba";
             //usuario.NombreReal = "UsuarioDePrueba nombre real";

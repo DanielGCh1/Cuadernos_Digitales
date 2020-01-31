@@ -80,9 +80,10 @@ namespace CuadernosDigitales.Forms
         {
             if(NombreUsuario && ContraseñaUsuario && RepetirContraseñaUsuario && NombreUsuarioCorrecto())
             {
-                Usuarios.Add(Usuario);
+            //    Usuarios.Add(Usuario);
             //    administrador.GuardarUsuario(Usuario);
                 Usuario.AgregarUsuarioALaBaseDeDatos(Usuario);
+                Usuarios = Usuario.CargarUsuariosDeLaBaseDeDatos();
 
                 MessageBox.Show("Se registro el nuevo usuario exitosamente");
                 this.Close();

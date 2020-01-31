@@ -104,7 +104,7 @@ namespace CuadernosDigitales.Forms
 
         private void DeepSkyBlueButton_Click(object sender, EventArgs e)
         {
-            colorSeleccionadoPanel.BackColor = System.Drawing.Color.DeepPink;
+            colorSeleccionadoPanel.BackColor = System.Drawing.Color.DeepSkyBlue;
             colorSeleccionado = Properties.Resources.DeepSkyBlue;
         }
 
@@ -154,16 +154,18 @@ namespace CuadernosDigitales.Forms
             Console.WriteLine(colorSeleccionadoPanel.BackColor.Name);
             Console.WriteLine();
 
+            List<Categoria> categorias = new List<Categoria>();
+
             for (int i = 0; i < 9; i++)
             {
                 if (categoriasTexBox[i].Text.Length != 0)
                 {
                     Categoria categoria1 = new Categoria();
                     categoria1.Nombre = categoriasTexBox[i].Text;
-                    cuaderno.agregarCategoria(categoria1);
+                    categorias.Add(categoria1);
                 }
             }
-
+            cuaderno.Categorias = categorias;
             cuadernoCreado = DialogResult.Yes;
             this.Close();
         }

@@ -357,7 +357,7 @@ namespace CuadernosDigitales.Forms
         private void NotasMenu_Load(object sender, EventArgs e)
         {
 
-            foreach (Categoria c in cuadernoPadre.getListaDeCategorias())
+            foreach (Categoria c in cuadernoPadre.Categorias)
             {
                 Label categoriaLabel = new Label();
                 categoriaLabel.AutoSize = true;
@@ -448,5 +448,9 @@ namespace CuadernosDigitales.Forms
             }
         }
 
+        private void categoriasPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

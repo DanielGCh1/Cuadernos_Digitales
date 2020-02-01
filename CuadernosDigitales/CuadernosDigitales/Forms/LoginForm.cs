@@ -171,34 +171,6 @@ namespace CuadernosDigitales.Forms
             {
                 MessageBox.Show($"Se produjo el siguiente error: {ex}");
             }
-            //System.Drawing.Color color = new Color();
-
-            //Categoria categoria = new Categoria();
-            //categoria.Nombre = "Hola";
-            //categoria.AgregarCategoriaALaBaseDeDatos(categoria);
-
-            //Usuario usuario = new Usuario();
-            //usuario.Nombre = "UsuarioDePrueba";
-            //usuario.NombreReal = "UsuarioDePrueba nombre real";
-            //usuario.Contraseña = "1234";
-
-            //myDBSQL.OpenConnection();
-            //try
-            //{
-            //    myDBSQL.BeginTransaction();
-            //    myDBSQL.EjectSQL(String.Format("INSERT INTO usuarios (`nombre_usuario`, `nombre_real`, `contrasenna`) VALUES ('{0}', '{1}', '{2}')",
-            //    usuario.Nombre, usuario.NombreReal, usuario.Contraseña));
-            //    myDBSQL.CommitTransaction();
-            //}
-            //catch (Exception e)
-            //{
-
-            //    MessageBox.Show($"Se produjo el siguiente error: {e}");
-            //}
-            //finally
-            //{
-            //    myDBSQL.CloseConnection();
-            //}
 
         }
 

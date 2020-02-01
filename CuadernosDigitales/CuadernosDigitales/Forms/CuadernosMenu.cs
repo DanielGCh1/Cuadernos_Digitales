@@ -398,5 +398,10 @@ namespace CuadernosDigitales.Forms
             }
             return imagenSeleccionada;
         }
+
+        private void inicioPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

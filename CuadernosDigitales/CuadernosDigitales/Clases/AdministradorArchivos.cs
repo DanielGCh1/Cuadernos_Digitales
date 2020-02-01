@@ -26,14 +26,6 @@ namespace CuadernosDigitales.Clases
             writer.WriteLine(line);
             writer.Close();
 
-
-            //using (StreamWriter streamWriter = new StreamWriter(pathUsuarios))
-            //{
-            //    var line = $"{usuario.nombre},{usuario.contrasena}";
-            //    streamWriter.WriteLine(line);
-            //    streamWriter.Flush();
-            //    return pathUsuarios;
-            //}
         }
         public List<Usuario> getUsuariosRegistrados()
         {
@@ -65,27 +57,7 @@ namespace CuadernosDigitales.Clases
                     //}
                 }
             }
-            /*    List<string[]> listUserString = new List<string[]>();
-                using (StreamReader reader = new StreamReader(pathUsuarios))
-                {
-                    string line;
-                    string[] row;
 
-                    while((line = reader.ReadLine()) != null)
-                    {
-                        row = line.Split(',');
-                        listUserString.Add(row);
-                    }
-                }
-
-                foreach(string[] user in listUserString)
-                {
-                    Usuario usuario = new Usuario();
-                    usuario.Nombre = user[0];
-                    usuario.Contraseña = user[1];
-                    usuario.Identificador = Convert.ToInt32(user[2]);
-                    usuarios.Add(usuario);
-                }*/
             return usuarios;
         }
 

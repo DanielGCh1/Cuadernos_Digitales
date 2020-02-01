@@ -80,8 +80,6 @@ namespace CuadernosDigitales.Forms
         {
             if(NombreUsuario && ContraseñaUsuario && RepetirContraseñaUsuario && NombreUsuarioCorrecto())
             {
-            //    Usuarios.Add(Usuario);
-            //    administrador.GuardarUsuario(Usuario);
                 Usuario.AgregarUsuarioALaBaseDeDatos(Usuario);
                 Usuarios = Usuario.CargarUsuariosDeLaBaseDeDatos();
 

@@ -29,7 +29,6 @@ namespace CuadernosDigitales.Forms
         public NotasMenu()
         {
             InitializeComponent();
-            CargarNotasDeBaseDeDatos();
 
             cuadernoPadre = CuadernosMenu.CuadernoSeleccionado;
 
@@ -67,7 +66,7 @@ namespace CuadernosDigitales.Forms
             //CrearHistorialCreacionNota(archivoManager);
 
             notaNueva = NuevaNota.nota;
-            notaNueva.Orden = CuadernosMenu.CuadernoSeleccionado.getListaDeNotas().Count;
+            notaNueva.Orden = CuadernosMenu.CuadernoSeleccionado.Notas.Count;
 
             Categoria categoria = new Categoria();
             categoria.Nombre = notaNueva.Categoria;

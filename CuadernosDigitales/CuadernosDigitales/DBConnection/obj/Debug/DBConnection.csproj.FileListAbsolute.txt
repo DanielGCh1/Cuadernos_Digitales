@@ -27,3 +27,12 @@ C:\Users\dgcha\Downloads\facturas MYSQL CONNECTION-20200119T181434Z-001\facturas
 C:\Users\dgcha\Downloads\facturas MYSQL CONNECTION-20200119T181434Z-001\facturas MYSQL CONNECTION\DBConnection\obj\Debug\DBConnection.csproj.CopyComplete
 C:\Users\dgcha\Downloads\facturas MYSQL CONNECTION-20200119T181434Z-001\facturas MYSQL CONNECTION\DBConnection\obj\Debug\DBConnection.dll
 C:\Users\dgcha\Downloads\facturas MYSQL CONNECTION-20200119T181434Z-001\facturas MYSQL CONNECTION\DBConnection\obj\Debug\DBConnection.pdb
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\bin\Debug\DBConnection.dll
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\bin\Debug\DBConnection.pdb
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\bin\Debug\Google.Protobuf.xml
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\bin\Debug\MySql.Data.xml
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\bin\Debug\Renci.SshNet.xml
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\obj\Debug\DBConnection.csprojAssemblyReference.cache
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\obj\Debug\DBConnection.csproj.CopyComplete
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\obj\Debug\DBConnection.dll
+C:\Users\Daniel\Documents\GitHub\Cuadernos_Digitales\CuadernosDigitales\CuadernosDigitales\DBConnection\obj\Debug\DBConnection.pdb

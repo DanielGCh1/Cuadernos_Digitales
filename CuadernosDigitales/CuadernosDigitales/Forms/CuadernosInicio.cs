@@ -198,6 +198,8 @@ namespace CuadernosDigitales
             etiquetaInicio.Visible = true;
             etiquetaHistorial.Visible = false;
             PanelEtiquetaEditarUsuario.Visible = false;
+
+            CargarCuadernosMenu();
         }
 
         private void CabezaPanel_Paint(object sender, PaintEventArgs e)
@@ -261,6 +263,14 @@ namespace CuadernosDigitales
             //CargarInformacionActividadUsuario(archivoManager, "Presionar el boton de Editar Usuario", $"El usuario {CuadernosInicio.UsuariosEstaticos[CuadernosInicio.IndiceUsuarioEstatico].Nombre} ingreso al formulario de Editar usuario", "Editar Usuario", 0);
             //CrearHistorialVisitaFormulario(archivoManager);
             AbrirForm<EditarUsuario>();
+        }
+        private void CargarCuadernosMenu()
+        {
+            etiquetaInicio.Visible = true;
+            etiquetaHistorial.Visible = false;
+            PanelEtiquetaEditarUsuario.Visible = false;
+            tituloLabel.Text = "INICIO";
+            MostrarFormEnPanel(new CuadernosMenu());
         }
     }
 }
